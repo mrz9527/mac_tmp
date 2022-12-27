@@ -1,0 +1,53 @@
+pthread_t
+pthread_create
+
+// 非分离状态下，子线程自然退出，或者pthread_exit退出时，主线程中pthread_join中可以获取子线程退出状态
+pthread_join
+
+
+// 在主线程中设置子线程分离
+pthread_attr_t
+pthread_attr_init
+pthread_attr_setdetachstate
+
+// 在子线程中设置自己分离
+pthread_detach 
+
+pthread_cancel
+// 设置线程取消状态，如果是disable，则禁用线程取消，程序中设置线程取消无效
+pthread_setcancelstate 
+
+// 设置线程取消的方式
+	pthread_cancel_asynchronous线程立即取消（当收到线程取消之后pthread_cancel，立即取消线程）
+	pthread_cancel_deferred延迟取消，到达取消点时再取消，还可以手动设置取消点，pthread_testcancel(设置取消点)，查看取消点（man pthreads)
+pthread_setcanceltype
+pthread_testcancel
+
+// 线程取消的应用场景
+   比如多线程网络服务程序，主线程退出时，希望关闭所有子线程，可以for循环遍历所有子线程，然后设置每个子线程为取消线程状态，且立即取消，类似终止所有子线程，让子线程安全退出。
+
+
+pthread_exit
+pthread_self
+pthread_kill:主进程向子线程发送信号
+
+多线程中断，无论中断函数是在主线程还是子线程中注册，都会有
+主线程被信号中断，主线程信号可以打断系统调用。（比如信号可以中断sleep）
+子线程不会被中断
+
+
+
+// 线程的退出
+正常退出：
+	return
+	pthread_exit
+异常退出
+	pthread_cancel设置线程取消，来让目标线程退出
+
+// 线程清理函数
+pthread_cleanup_push 什么时候执行？
+	pthread_exit
+	pthread_cancel
+	pthread_clean_pop (一般写在线程主函数最后面，且该函数参数不为0)
+	正常return不会执行pthread_cleanup_push
+

@@ -1,0 +1,9 @@
+matplotlib==2.2.2
+netron==6.3.6
+numpy==1.14.3
+pandas==0.23.0
+Pillow==9.3.0
+requests==2.18.4
+scikit_learn==1.2.0
+tensorflow==2.11.0
+tqdm==4.64.1

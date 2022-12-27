@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人首页</title>
+</head>
+<body>
+<h1>当前时间</h1>
+<p>{{ current_time }}</p>
+<h1>变量代码块演示</h1>
+<p>
+    {# my_list变量通过python程序传入   #}
+    {{ my_list }} <br>
+    {#  获取到my_list后，可以获取my_list变量的每个成员，可以通过.运算或者下标来获取到  #}
+    {{ my_list.2 }}<br>
+    {{ my_list[2] }}<br>
+    {{ my_dict }}<br>
+
+</p>
+<h1>控制代码块演示</h1>
+
+<p>
+    {#快速编写for循环快捷键：先写for，再按tab键#}
+    {% for num in my_list %}
+        {% if num > 3 %}
+            {{ num }} <br>
+        {%  else %}
+            num的值小于或等于3<br>
+        {% endif %}
+
+    {% endfor %}
+</p>
+
+<h1>过滤器演示</h1>
+<h2>字符串过滤器</h2>
+{{ my_dict.name | capitalize }}<br>
+{{ "zhou.shi.qi" | upper }}<br>
+<h2>列表过滤器</h2>
+{{ my_list | first }} <br>
+{{ [1,2,3,4,5] | last }}<br>
+{{ my_list | sum }}<br>
+{{ my_list | length }}<br>
+</body>
+</html>

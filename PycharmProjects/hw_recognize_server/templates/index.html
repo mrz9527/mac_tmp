@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>手写识别</title>
+    <style>
+        .doc {
+            width: 604px;
+            margin: 0 auto;
+        }
+
+        canvas {
+            display: block;
+            border: 2px solid #888;
+        }
+    </style>
+<body>
+<div class="doc">
+    <canvas width="600" height="400" id="cvs"></canvas>
+    <div>
+        <p>
+            <button id="clear" onclick="onClear()">清空</button>
+            <br>
+        <p id="result"></p>
+
+        </p>
+
+    </div>
+</div>
+<script>
+    var canvas, ctx, bMouseIsDown = false, iLastX, iLastY,
+        $clear;
+
+    var points = new Array();
+    var bihuaId = 0;
+    var pointsNum = 0;
+
+    function init() {
+        canvas = document.getElementById('cvs');
+        ctx = canvas.getContext('2d');
+        $clear = document.getElementById('$clear');
+        bind();
+    }
+
+    function bind() {
+        canvas.onmousedown = function (e) {
+            bMouseIsDown = true;
+            iLastX = e.clientX - canvas.offsetLeft + (window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft);
+            iLastY = e.clientY - canvas.offsetTop + (window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop);
+
+            points[pointsNum] = new Array();
+            points[pointsNum][0] = iLastX;
+            points[pointsNum][1] = iLastY;
+            points[pointsNum][2] = bihuaId;
+            ++pointsNum;
+
+        }
+
+        canvas.onmouseup = function (e) {
+            bMouseIsDown = false;
+            iLastX = e.clientX - canvas.offsetLeft + (window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft);
+            iLastY = e.clientY - canvas.offsetTop + (window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop);
+
+            postData();
+            ++bihuaId;
+
+        }
+
+        canvas.onmousemove = function (e) {
+            if (bMouseIsDown) {
+                var iX = e.clientX - canvas.offsetLeft + (window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft);
+                var iY = e.clientY - canvas.offsetTop + (window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop);
+                ctx.moveTo(iLastX, iLastY);
+                ctx.lineTo(iX, iY);
+                ctx.stroke();
+                iLastX = iX;
+                iLastY = iY;
+
+                points[pointsNum] = new Array();
+                points[pointsNum][0] = iX;
+                points[pointsNum][1] = iY;
+                points[pointsNum][2] = bihuaId;
+                ++pointsNum;
+            }
+        };
+    }
+
+    function postData() {
+        var worker = new Worker('static/js/worker.js');
+        worker.postMessage(points);
+
+        worker.onmessage = function (event) {
+
+            document.getElementById("result").innerHTML +=
+                event.data + "<br/>";
+        };
+    }
+
+    function onClear(e) {
+        ctx.beginPath();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        points = [];
+        bihuaId = 0;
+        pointsNum = 0;
+    }
+
+
+    onload = init;
+</script>
+</body>
+</html>

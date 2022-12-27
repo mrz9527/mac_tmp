@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/xm210408/programs/algorithms/nameAge/NameAge.h
+string
+/Users/xm210408/programs/algorithms/nameAge/string
+
+/Users/xm210408/programs/algorithms/quickSort/CQuickSort.h
+vector
+/Users/xm210408/programs/algorithms/quickSort/vector
+stack
+/Users/xm210408/programs/algorithms/quickSort/stack
+
+/Users/xm210408/programs/algorithms/quickSort/main.cpp
+CQuickSort.h
+/Users/xm210408/programs/algorithms/quickSort/CQuickSort.h
+../nameAge/NameAge.h
+/Users/xm210408/programs/algorithms/nameAge/NameAge.h
+

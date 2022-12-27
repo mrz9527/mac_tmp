@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/xm210408/programs/algorithms/maxHeap/CHeapSort.h
+vector
+/Users/xm210408/programs/algorithms/maxHeap/vector
+algorithm
+-
+
+/Users/xm210408/programs/algorithms/maxHeap/main.cpp
+iostream
+-
+CHeapSort.h
+/Users/xm210408/programs/algorithms/maxHeap/CHeapSort.h
+../nameAge/NameAge.h
+/Users/xm210408/programs/algorithms/nameAge/NameAge.h
+
+/Users/xm210408/programs/algorithms/nameAge/NameAge.h
+string
+/Users/xm210408/programs/algorithms/nameAge/string
+

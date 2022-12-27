@@ -1,0 +1,10 @@
+core：内核代码
+data：原始词典
+dict：二进制词典
+export：对外的api
+android：为android提供的jni实现
+tools：原始词典转二进制词典，数据处理等
+util：基础库
+unit_test：单元测试
+third_part：第三方开源依赖库
+

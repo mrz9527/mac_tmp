@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/xm210408/programs/algorithms/nameAge/NameAge.cpp
+NameAge.h
+/Users/xm210408/programs/algorithms/nameAge/NameAge.h
+
+/Users/xm210408/programs/algorithms/nameAge/NameAge.h
+string
+/Users/xm210408/programs/algorithms/nameAge/string
+

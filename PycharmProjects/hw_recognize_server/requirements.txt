@@ -1,0 +1,11 @@
+certifi==2021.5.30
+click==8.0.3
+dataclasses @ file:///tmp/build/80754af9/dataclasses_1614363715916/work
+Flask @ file:///tmp/build/80754af9/flask_1634118196080/work
+importlib-metadata==4.8.2
+itsdangerous @ file:///tmp/build/80754af9/itsdangerous_1621432558163/work
+Jinja2==3.0.3
+MarkupSafe @ file:///opt/concourse/worker/volumes/live/16a820f0-3874-45b4-6b79-5313238ead21/volume/markupsafe_1621528157387/work
+typing_extensions==4.0.0
+Werkzeug @ file:///tmp/build/80754af9/werkzeug_1635505089296/work
+zipp==3.6.0

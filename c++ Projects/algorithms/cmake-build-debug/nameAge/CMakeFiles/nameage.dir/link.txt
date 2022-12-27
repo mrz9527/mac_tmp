@@ -1,0 +1,1 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -g -dynamiclib -Wl,-headerpad_max_install_names -o libnameage.dylib -install_name @rpath/libnameage.dylib CMakeFiles/nameage.dir/NameAge.cpp.o 

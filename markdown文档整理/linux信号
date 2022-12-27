@@ -1,0 +1,209 @@
+linux信号
+	常常用于多进程。
+
+后台程序：	
+	后台服务程序不受终端控制，没有交互界面，常驻内存。
+	周期性或通过事件唤醒的方式执行任务。
+
+让程序在后台运行的方式：
+	1）执行程序时加&
+	2）采用fork。fork之后，父进程退出，子进程继续运行（由爷爷进程托管或者系统进程托管）
+
+
+终止后台程序：
+	后台程序没法用ctrl+c来终止程序，因为后台程序脱离了终端的控制。
+	或者kill/killall命令
+	1）killall 	进程名
+	2) kill 	进程号
+
+信号的概念
+	signal信号是进程之间相互传递消息的一种方法，信号全称为软中断信号，也有人称作软中断。
+
+	注意事项：信号只是用来通知某进程发生了什么事件，无法给进程传递任何数据，进程对信号的处理方法有三种：
+		1）第一种方法是，忽略某个信号，对该信号不做任何处理，就象未发生过一样。
+		2）第二种是设置中断的处理函数，收到信号后，由该函数来处理。
+		3）第三种方法是，对该信号的处理采用系统的默认操作，大部分的信号的默认操作是终止进程。
+
+信号的作用
+	服务程序运行在后台，如果想让中止它，强行杀掉不是个好办法，因为程序被杀的时候，程序突然死亡，没有释放资源，会影响系统的稳定，用Ctrl+c中止与杀程序是相同的效果。
+	如果能向后台程序发送一个信号，后台程序收到这个信号后，调用一个函数，在函数中编写释放资源的代码，程序就可以有计划的退出，安全而体面。
+	在实际开发中，信号用于服务程序的退出。
+
+信号函数
+	typedef void (*sighandler_t)(int signum);
+	sighandler_t signal(int signum, sighandler_t handler);
+	signum:
+		共64中信号，常见信号如下：
+			SIGINT	: 捕获终端ctrl + c交互产生的信号
+			SIGTERM	: 捕获kill或者killall命令产生的信号(但是通过“kill -9 进程号”或者“killall -9 进程名” 关闭进程的命令，无法捕获，强制关闭进程)
+			SIGCHLD	: 子进程退出时向父进程信号
+	handler:
+		信号处理函数，有三种情况：
+			1）SIG_IGN：忽略参数signum所指的信号。忽略中断信号后，不会打算sleep的睡眠。
+			2）一个自定义的处理信号的函数，信号的编号为这个自定义函数的参数。
+			3）SIG_DFL：恢复参数signum所指信号的处理方法为默认值。
+	函数返回值：
+		返回前一次的信号处理函数。
+
+
+特殊说明：sleep()会被信号中断.
+		while(true) {
+			dowork();
+			sleep(5);
+		}
+		在sleep的过程中，如果收到一个中断，比如SIGINT，就会结束sleep，转而执性中断处理函数，中断处理函数执行完毕后，继续执行while循环，而不是在sleep中睡眠5秒。
+		本质是因为sleep是让线程睡眠，但是收到中断后，会触发中断处理函数，等中断处理函数执行完毕后，原来睡眠的线程会醒过来。
+
+
+实际开发中，在main函数开始位置，会屏蔽掉所有信号，这么做的目的是不希望程序被干扰。然后，再设置程序员关心的信号的处理函数。
+	for( int i = 0; i < 65; ++i) {
+		signal(i, SIG_IGN);
+	}
+
+
+可靠信号与不可靠信号
+可靠信号1~32，不可靠信号34~64
+不可靠信号：
+	存在信号丢失的问题（进程收到的信号不作排队处理，相同的信号多次到来会合并为一个）
+可靠信号：
+	不存在信号丢失。	
+
+信号处理函数被中断
+	主程序运行过程中，同时遇到多个不同的信号的情况
+		遇到遇到中断信号2，会执行中断2处理函数sig2_handler,如果此时又遇到中断15，则会中断sig2_handler,而是去执行sig15_handler,
+		等sig15_handler处理完毕之后，再执行sig2_handler,等sig2_handler执行完毕，再回到主程序。
+	主程序运行过程中，同时遇到多个相同信号的情况
+		首先，相同信号都会排队，比如有5次信号2，1_2先执行，执行完毕后，再依次执行后面的信号，2_2,3_2,4_2,5_2等
+		其次，如果是可靠信号，5次信号都会按序排队处理；
+		反之，如果是不可靠信号，可能会存在信号丢失或合并，比如5次信号，只剩下2_2和5_2,其余3次信号丢失，那么这两个信号也是按序排队处理。
+
+
+信号的阻塞
+	信号阻塞的用途：
+		假定主程序运行过程中，同时遇到了多个信号，比如信号2和信号15，那么主程序被信号2中断，信号2被信号15中断，
+		现在，我想等信号2的处理函数执行完毕之后，在执行信号15的中断函数。那么就需要对信号15作延迟或阻塞处理。
+
+	信号集
+		就是信号的集合。
+		sigset_t是代表信号集合的数据结构。一个进程有一个信号集，这个信号集表示当前屏蔽(阻塞)了哪些信号。
+
+	相关函数
+		清空信号集
+		int sigemptyset(sigset_t *set);
+		将所有信号（64个信号）加入到信号集
+		int sigfillset(sigset_t *set);
+		添加单个信号到信号集中
+		int sigaddset(sigset_t *set, int signum);
+		从信号集中删除单个信号
+		int sigdelset(sigset_t *set, int signum);
+		判断某个信号是否在信号集中
+		int sigismember(const sigset_t *set, int signum);
+
+	阻塞的用法
+	int sigprocmask(int how, const sigset_t *set, sigset_t *oldset);
+		how:取值有3种，常用的是2种：
+		 	SIG_BLOCK
+	              阻塞信号集set中的信号（是阻塞信号，不是丢弃信号，等到阻塞被解除时，被阻塞的信号会进入相应的中断函数，也就起到了延迟的作用）
+	       	SIG_UNBLOCK
+	              不阻塞信号集set中的信号
+	    set:需要设置的信号集
+	    oldset:一般设置为NULL
+
+    举例说明：主程序运行过程中，先收到中断信号2，紧接着又收到中断信号15，信号2的中断处理函数不想被信号15打断，而是等到中断2的处理函数执行完毕后，再执行中断15的处理函数；
+    		 那么需要在中断2处理函数开始阶段，阻塞信号15，中断2处理函数执行完毕，解除信号15的阻塞。
+    int main() {
+    	signal(2, handler2);
+    	signal(15, handler15);
+    	while(1) {
+    		sleep(5);
+    	}
+    	return 0;
+    }
+
+    void handler2(int sig) {
+    	sigset_t sigset;
+    	sigemptyset(&sigset);
+    	sigaddset(&sigset, 15);
+    	sigprocmask(SIG_BLOCK, &sigset, NULL);
+
+    	doHandler2();
+
+    	sigprocmask(SIG_UNBLOCK, &sigset, NULL);
+    }
+
+    void handler15(int sig) {
+    	doHandler15();
+    }
+
+
+功能比signal()更强大的sigaction()
+	int sigaction(int signum, const struct sigaction *act, struct sigaction *oldact);
+	signum：信号值，同signal函数的信号值
+	act:结构体struct sigaction，用于设置信号中断处理函数入口和阻塞的信号集
+	oldact:一般设置为NULL
+
+	struct sigaction
+	  {
+	    __sighandler_t sa_handler;	// 信号中断处理函数（和signal类似）
+	    __sigset_t sa_mask;			// 信号集（用于阻塞信号，和sigprocmask类似）
+
+	    // 其余成员基本不使用
+	    int sa_flags;				
+	    void (*sa_restorer) (void);
+	  };
+
+举例说明：主程序运行过程中，先收到中断信号2，紧接着又收到中断信号15，信号2的中断处理函数不想被信号15打断，而是等到中断2的处理函数执行完毕后，再执行中断15的处理函数；
+		 那么需要在中断2处理函数开始阶段，阻塞信号15，中断2处理函数执行完毕，解除信号15的阻塞。
+	
+	int main() {
+		struct sigaction act2;
+		memset(&act, 0, sizeof(act));
+		act.sa_handler = handler2;
+		sigaddset(&act.sa_mask, 15);
+		sigaction(2, &act2, NULL);
+		sigaction(15, &act2, NULL); // 信号集不会阻塞自己，只会阻塞别人。
+
+		while(1) {
+			sleep(5);
+		}
+
+	}
+
+	void handler2(int sig) {
+    	doHandler2();
+    }
+
+    void handler15(int sig) {
+    	doHandler15();
+    }
+	
+
+  
+
+
+
+
+
+
+kill命令用法
+kill -signal pid
+signal:可以从1到64，比如发送信号15
+kill -15 pid
+
+
+
+kill函数
+	int kill(pid_t pid, int sig);
+	参数： 
+	pid：可能选择有以下四种
+		1. pid大于零时，pid是信号欲送往的进程的标识。
+		2. pid等于零时，信号将送往所有与调用kill()的那个进程属同一个使用组的进程。
+		3. pid等于-1时，信号将送往所有调用进程有权给其发送信号的进程，除了进程1(init)。
+		4. pid小于-1时，信号将送往以-pid为组标识的进程。
+
+	sig：准备发送的信号代码，假如其值为零则没有任何信号送出，但是系统会执行错误检查，通常会利用sig值为零来检验某个进程是否仍在执行。
+
+
+
+父进程退出，能否通知所有子进程也退出？
+父线程退出，子线程？

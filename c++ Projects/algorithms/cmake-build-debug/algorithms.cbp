@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="algorithms"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\nameAge\;CMake Files\maxHeap\;CMake Files\quickSort\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/xm210408/programs/algorithms/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/xm210408/programs/algorithms/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/xm210408/programs/algorithms/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="nameage">
+				<Option output="/Users/xm210408/programs/algorithms/cmake-build-debug/nameAge/libnameage.dylib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/xm210408/programs/algorithms/cmake-build-debug/nameAge"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/nameAge/Makefile&quot;  VERBOSE=1 nameage"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/nameAge/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/nameAge/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/nameAge/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="nameage/fast">
+				<Option output="/Users/xm210408/programs/algorithms/cmake-build-debug/nameAge/libnameage.dylib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/xm210408/programs/algorithms/cmake-build-debug/nameAge"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/nameAge/Makefile&quot;  VERBOSE=1 nameage/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/nameAge/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/nameAge/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/nameAge/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="maxHeap">
+				<Option output="/Users/xm210408/programs/algorithms/cmake-build-debug/maxHeap/maxHeap" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/xm210408/programs/algorithms/cmake-build-debug/maxHeap"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/maxHeap/Makefile&quot;  VERBOSE=1 maxHeap"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/maxHeap/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/maxHeap/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/maxHeap/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="maxHeap/fast">
+				<Option output="/Users/xm210408/programs/algorithms/cmake-build-debug/maxHeap/maxHeap" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/xm210408/programs/algorithms/cmake-build-debug/maxHeap"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/maxHeap/Makefile&quot;  VERBOSE=1 maxHeap/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/maxHeap/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/maxHeap/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/maxHeap/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="quickSort">
+				<Option output="/Users/xm210408/programs/algorithms/cmake-build-debug/quickSort/quickSort" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/xm210408/programs/algorithms/cmake-build-debug/quickSort"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/quickSort/Makefile&quot;  VERBOSE=1 quickSort"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/quickSort/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/quickSort/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/quickSort/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="quickSort/fast">
+				<Option output="/Users/xm210408/programs/algorithms/cmake-build-debug/quickSort/quickSort" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/xm210408/programs/algorithms/cmake-build-debug/quickSort"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/quickSort/Makefile&quot;  VERBOSE=1 quickSort/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/quickSort/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/quickSort/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/xm210408/programs/algorithms/cmake-build-debug/quickSort/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/xm210408/programs/algorithms/maxHeap/main.cpp">
+			<Option target="maxHeap"/>
+		</Unit>
+		<Unit filename="/Users/xm210408/programs/algorithms/nameAge/NameAge.cpp">
+			<Option target="nameage"/>
+		</Unit>
+		<Unit filename="/Users/xm210408/programs/algorithms/nameAge/NameAge.h">
+			<Option target="nameage"/>
+		</Unit>
+		<Unit filename="/Users/xm210408/programs/algorithms/quickSort/main.cpp">
+			<Option target="quickSort"/>
+		</Unit>
+		<Unit filename="/Users/xm210408/programs/algorithms/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/xm210408/programs/algorithms/nameAge/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\nameAge\"/>
+		</Unit>
+		<Unit filename="/Users/xm210408/programs/algorithms/maxHeap/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\maxHeap\"/>
+		</Unit>
+		<Unit filename="/Users/xm210408/programs/algorithms/quickSort/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\quickSort\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

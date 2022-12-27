@@ -1,0 +1,29 @@
+安装triton python模块
+    pip install tritonclient[all]
+
+triton客户端
+    my_evaluate.py
+        借助分词器，对输入语句进行处理，返回的结果作为sensitive_client.client_main()的参数
+
+    sensitive_client.py     客户端主程序
+        parse_model_http
+            解析模型元信息
+
+         requestGenerator
+            填充模型推理请求所需数据。
+
+        postprocess
+            对响应的结果进行处理
+
+        client_main
+            作用：客户端主函数
+            主流程：
+                （1）采用httpclient方式，获取模型的config和metedata，并解析模型元信息。
+                （2）根据模型元信息，填充模型推理请求所需数据。
+                （2）发送模型推理请求InferenceServerClient.infer()
+
+
+triton服务端
+    triton服务部署在dl5上。
+    采用docker的方式安装和部署，具体参见triton用法.md
+

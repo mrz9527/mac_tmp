@@ -1,0 +1,1 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/quickSort.dir/main.cpp.o -o quickSort  -Wl,-rpath,/Users/xm210408/programs/algorithms/cmake-build-debug/nameAge ../nameAge/libnameage.dylib 

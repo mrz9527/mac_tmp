@@ -1,0 +1,123 @@
+// author : zhoukang
+// date   : 2022-07-14 18:07:28
+
+#ifndef DESIGN_MODE_MESSAGER_H
+#define DESIGN_MODE_MESSAGER_H
+
+#include "string"
+
+class Messager {
+public:
+    // 与平台相关接口
+    virtual void PlaySound()=0;
+    virtual void Connect()=0;
+    virtual void DrawShape()=0;
+
+    // 与业务相关接口
+    virtual void Login(std::string username, std::string password)=0;
+    virtual void SendMessage(std::string msg)=0;
+};
+
+// pc端，只实现了平台相关的接口，业务相关接口未实现
+class PcMessager:public Messager {
+public:
+    // 与平台相关接口
+    virtual void PlaySound(){
+        //...
+        printf("Pc端-播放声音\n");
+    };
+    virtual void Connect(){
+        //...
+        printf("Pc端-网络连接\n");
+    }
+    virtual void DrawShape(){
+        //...
+        printf("Pc端-绘制图形\n");
+    }
+};
+
+class MobileMessager:public Messager {
+public:
+    // 与平台相关接口
+    virtual void PlaySound(){
+        //...
+        printf("移动端-播放声音\n");
+    };
+    virtual void Connect(){
+        //...
+        printf("移动端-网络连接\n");
+    }
+    virtual void DrawShape(){
+        //...
+        printf("移动端-绘制图形\n");
+    }
+};
+
+class PcMessagerLite:PcMessager{
+public:
+    // 与业务相关接口
+    virtual void Login(std::string username, std::string password){
+        // 稳定部分
+        PcMessager::Connect(); // 登录前需要网络连接
+        // 不稳定部分
+        printf("Pc端精简版-登录\n");
+    };
+    virtual void SendMessage(std::string msg){
+        // 不稳定部分
+        printf("Pc端精简版-登录\n");
+    }
+};
+
+class PcMessagerPerfect:PcMessager{
+public:
+    // 与业务相关接口
+    virtual void Login(std::string username, std::string password){
+        // 稳定部分
+        PcMessager::Connect(); // 登录前需要网络连接
+        // 不稳定部分
+        printf("Pc端完整版-登录\n");
+        // 稳定部分
+        PcMessager::PlaySound(); // 登录成功，播放提示音
+    };
+    virtual void SendMessage(std::string msg){
+        // 不稳定部分
+        printf("Pc端完整版-登录\n");
+        // 稳定部分
+        PcMessager::PlaySound(); // 发送成功，播放提示音
+    }
+};
+
+class MobileMessagerLite:MobileMessager{
+public:
+    // 与业务相关接口
+    virtual void Login(std::string username, std::string password){
+        // 稳定部分
+        PcMessager::Connect(); // 登录前需要网络连接
+        // 不稳定部分
+        printf("移动端精简版-登录\n");
+    };
+    virtual void SendMessage(std::string msg){
+        // 不稳定部分
+        printf("移动端精简版-登录\n");
+    }
+};
+
+class MobileMessagerPerfect:MobileMessager{
+public:
+    // 与业务相关接口
+    virtual void Login(std::string username, std::string password){
+        // 稳定部分
+        PcMessager::Connect(); // 登录前需要网络连接
+        // 不稳定部分
+        printf("移动端完整版-登录\n");
+        // 稳定部分
+        PcMessager::PlaySound(); // 登录成功，播放提示音
+    };
+    virtual void SendMessage(std::string msg){
+        // 不稳定部分
+        printf("移动端完整版-登录\n");
+        // 稳定部分
+        PcMessager::PlaySound(); // 发送成功，播放提示音
+    }
+};
+#endif //DESIGN_MODE_MESSAGER_H

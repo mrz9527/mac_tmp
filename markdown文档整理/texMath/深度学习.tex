@@ -1,0 +1,68 @@
+% 导言区
+\documentclass[UTF-8]{article} %article
+
+\usepackage{ctex} 					% 用于支持中文输入
+\usepackage{graphicx}			 % 用于支持插入图片
+\usepackage{bm}						% 用于加粗公式，\textbf{text} 是用于加粗普通文本，不能用于加粗公式
+\usepackage{color}					% 文字增加颜色
+\usepackage{hyperref}
+%\usepackage{syntonly}			 % 只检查语法，排除错误，不生成pdf，提高编译速度
+%\syntaxonly								% 如果想生成文档，注释这一行即可
+
+\usepackage{amsmath}			% 用于支持\begin{align*}. \begin{equqtion*}等数学形式
+\usepackage{listings}				% 用于代码排版的宏包，支持C++等语言，可以对关键字、注释和字符串等使用不同的颜色和字体，也可以为代码添加边框、背景等风格。
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+% 设置代码块的格式
+\lstset{ %
+	language=Python,                % the language of the code
+	basicstyle=\footnotesize,           % the size of the fonts that are used for the code
+	numbers=left,                   % where to put the line-numbers
+	numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+	stepnumber=2,                   % the step between two line-numbers. If it's 1, each line 
+	% will be numbered
+	numbersep=5pt,                  % how far the line-numbers are from the code
+	backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+	showspaces=false,               % show spaces adding particular underscores
+	showstringspaces=false,         % underline spaces within strings
+	showtabs=false,                 % show tabs within strings adding particular underscores
+	frame=single,                   % adds a frame around the code
+	rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+	tabsize=2,                      % sets default tabsize to 2 spaces
+	captionpos=b,                   % sets the caption-position to bottom
+	breaklines=true,                % sets automatic line breaking
+	breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+	title=\lstname,                   % show the filename of files included with \lstinputlisting;
+	% also try caption instead of title
+	keywordstyle=\color{blue},          % keyword style
+	commentstyle=\color{dkgreen},       % comment style
+	stringstyle=\color{mauve},         % string literal style
+	escapeinside={\%*}{*)},            % if you want to add LaTeX within your code
+	morekeywords={*,...}               % if you want to add more keywords to the set
+}
+
+\title{深度学习}
+\author{周康}
+\date{\today}
+
+
+
+
+%正文区
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\section{参考}
+	\href{https://captainbed.vip/}{床长人工智能}
+	
+	\include{单层神经网络之基础理论}
+	\include{单层神经网络之代码实现}
+	\include{浅层神经网络之基础理论}
+	
+\end{document}

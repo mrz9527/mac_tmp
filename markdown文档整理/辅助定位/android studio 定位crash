@@ -1,0 +1,39 @@
+#1. 让程序在手机上执行，26键乱点按键，crash
+
+#2. 定位crash的内存地址	
+		#1.进入ndk 21.3这个版本目录
+		cd /Users/xm210408/Library/Android/sdk/ndk/21.3.6528147/		
+		
+		# 下面命令行，定位crash的地址，其中命令行最后一个参数是cpu架构目录路径
+		adb logcat | ./ndk-stack -sym /Users/xm210408/program2/huaweiguifan/keyboard/app/build/intermediates/cmake/oemDebug/obj/arm64-v8a
+		
+		可以输出到文件中方便查看
+		adb logcat | ./ndk-stack -sym /Users/xm210408/program2/huaweiguifan/keyboard/app/build/intermediates/cmake/oemDebug/obj/arm64-v8a >> ~/a.txt
+
+#3. 定位crash的文件代码位置
+		# 进入指定文件夹
+		cd /Users/xm210408/Library/Android/sdk/ndk/21.3.6528147/
+		394  cd toolchains/
+		395  cd aarch64-linux-android-4.9/
+		396  cd prebuilt/
+		397  cd darwin-x86_64/
+		398  cd bin
+		
+		
+		# 根据crash的内存地址定位代码位置，倒数第二个是指定的so文件路径，倒数第一个是crash的地址，该地址直接从第二步中得到地址获取，举例：
+		# 第二步得到的结果中
+					#01 0x00000000000d725c /data/app/com.huawei.ohos.inputmethod-Ek2UIpPjyTItUShLiG5t5g==/lib/arm64/libjni_kikaime.so
+					std::__ndk1::unordered_map<int, int, std::__ndk1::hash<int>, std::__ndk1::equal_to<int>, std::__ndk1::allocator<std::__ndk1::pair<int const, int> > >::find(int const&) const
+					/Users/xm210408/Library/Android/sdk/ndk/21.3.6528147/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/unordered_map:1280:69
+
+		  				libjni_kikaime.so就是这里的第二个参数的so文件，0x00000000000d725c就是内存地址
+
+
+		./aarch64-linux-android-addr2line -e /Users/xm210408/program2/huaweiguifan/keyboard/app/build/intermediates/cmake/oemDebug/obj/arm64-v8a/libjni_kikaime.so d725c
+					输出：
+							/Users/xm210408/Library/Android/sdk/ndk/21.3.6528147/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/unordered_map:1280
+
+
+
+
+
